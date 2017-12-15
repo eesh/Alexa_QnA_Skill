@@ -47,13 +47,30 @@ const controllers = {
       })
     }
 
+    function updateAttribute() {
+      AlexaAttribute.findOneAndUpdate({ 'attribute': attribute}, { $set: { 'value' : value }}, { 'new' : true}, (err, doc) => {
+        if(err) {
+          res.json({ value: null })
+          return
+        }
+        if(doc == null) {
+          res.json({ value: null })
+          return
+        }
+
+        res.json(doc)
+        return;
+      })
+    }
+
     AlexaAttribute.findOne({ 'attribute' : attribute }, (err, doc) => {
       if(err) {
         res.json({ value: null })
         return
       }
       if(doc != null) {
-        res.json({ value: null })
+        console.log('found')
+        updateAttribute();
         return
       }
 
