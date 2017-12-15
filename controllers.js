@@ -47,7 +47,7 @@ const controllers = {
       })
     }
 
-    AlexaAttribute.findOne({ attribute : req.query.attribute }, (err, doc) => {
+    AlexaAttribute.findOne({ 'attribute' : attribute }, (err, doc) => {
       if(err) {
         res.json({ value: null })
         return
