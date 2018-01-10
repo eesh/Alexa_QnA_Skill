@@ -41,6 +41,7 @@ function runBlockSet(clientID, blockSet) {
       set: blockSet
     }
   });
+  return true;
 }
 
 function saveClientID(clientID, access_code) {
