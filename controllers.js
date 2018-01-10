@@ -213,7 +213,7 @@ const controllers = {
     function onSave(err, doc) {
       console.log('onSave')
       if(err != null ) {
-        res.json({value: null})
+        res.json({value: null, error: err.message })
         return
       }
 
