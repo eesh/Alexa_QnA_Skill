@@ -5,18 +5,15 @@ const UserSchema = mongoose.Schema({
   "passphrase": String,
   "authToken": {
     type: String,
-    unique: true,
     sparse: true
   },
   "access_code": {
     type: Number,
-    unique: true,
     sparse: true
   },
   "message": String,
   "clientID": {
     type: String,
-    unique: true,
     sparse: true
   }
 })
