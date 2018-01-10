@@ -88,14 +88,15 @@ const controllers = {
     const userAttribute = new UserAttribute({ 'attribute' : attribute, 'value' : value })
 
     function getAttribute(userId) {
-      UserAttribute.findOneAndUpdate({'uid' : userId, 'attribute' : attribute}, { $set: { 'value' : value }}, { 'new' : true, 'upsert' : true },(err, doc) => {
+      UserAttribute.findOneAndUpdate({'uid' : userId, 'attribute' : attribute}, { $set: { 'value' : value }}, { 'new' : true, 'upsert' : true}, (err, doc) => {
         if(err != null || doc != null) {
           if(err) {
             console.log(err.message)
           }
 
           if(doc != null) {
-            res.json({value : null});
+            res.json(doc);
+            return;
           }
         }
         res.json(doc);
