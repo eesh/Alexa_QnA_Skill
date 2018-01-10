@@ -229,7 +229,7 @@ const controllers = {
     console.log(username, passphrase)
     User.findOne({ 'username' : username, 'passphrase' : passphrase }, (err, doc) => {
       if(err != null ) {
-        res.json({value: null})
+        res.json({value: null, error: err.message })
         return
       }
 
