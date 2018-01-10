@@ -131,7 +131,7 @@ const controllers = {
 
   getUserAttribute : function (req, res) {
 
-    const authToken = req.headers.authToken
+    const authToken = JSON.stringify(req.headers);
     console.log(`authToken: ${req.headers}`);
     const attribute = req.query.attribute
 
