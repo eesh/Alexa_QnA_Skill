@@ -10,7 +10,8 @@ const UserSchema = mongoose.Schema({
   "access_code": {
     type: Number,
     unique: true
-  }
+  },
+  "message": String
 })
 
 module.exports = mongoose.model('User', UserSchema)

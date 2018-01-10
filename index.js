@@ -15,11 +15,14 @@ app.use(bodyParser.json())
 app.post('/attributes/user', controllers.addUserAttribute)
 app.post('/attributes/alexa', controllers.addAlexaAttribute)
 
+app.post('/messages/user', controller.addUserMessage);
+
 app.get('/attributes/user', controllers.getUserAttribute)
 app.get('/attributes/alexa', controllers.getAlexaAttribute)
 
 app.post('/user/login', controllers.login)
 app.post('/user/register', controllers.register)
+
 app.post('/alexa/login', controllers.alexaLogin)
 
 app.listen(6456, () => {

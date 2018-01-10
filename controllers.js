@@ -87,33 +87,18 @@ const controllers = {
 
     const userAttribute = new UserAttribute({ 'attribute' : attribute, 'value' : value })
 
-
-    function saveAttribute(userAttribute) {
-      console.log(userAttribute)
-      userAttribute.save((err, doc) => {
-        if (err) {
-          console.log(err.message)
-          res.json({value : null})
-          return
-        }
-
-        res.json(doc)
-        return;
-      })
-    }
-
     function getAttribute(userId) {
-      UserAttribute.findOne({'uid' : userId, 'attribute' : attribute}, (err, doc) => {
+      UserAttribute.findOneAndUpdate({'uid' : userId, 'attribute' : attribute}, { $set: { 'value' : value }}, { 'new' : true, 'upsert' : true },(err, doc) => {
         if(err != null || doc != null) {
           if(err) {
             console.log(err.message)
           }
 
-          res.json({value: null})
-          return
+          if(doc != null) {
+            res.json({value : null});
+          }
         }
-
-        saveAttribute(userAttribute);
+        res.json(doc);
         return
       })
     }
@@ -126,6 +111,20 @@ const controllers = {
 
       userAttribute.uid = doc.id;
       getAttribute(doc.id)
+    })
+  },
+
+  addUserMessage: function (req, res) {
+
+    const authToken = req.headers.authtoken
+    const message = req.body.message
+
+    User.findOneAndUpdate({ 'authToken' : authToken }, { $set : { "message":message}}, { 'new' : true }, function (err, doc) {
+      if(err != null || doc == null) {
+        res.json({value: null, error: 'No such user'})
+        return
+      }
+      res.json(doc)
     })
   },
 
