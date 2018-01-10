@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const controllers = require('./controllers')
-const http = require('http')
 const socketManager = require('./socketManager')
 
 const HTTP_PORT = 6456
@@ -31,7 +30,7 @@ app.post('/scratch/run', controllers.runScratchBlock)
 
 app.post('/alexa/login', controllers.alexaLogin)
 
-var server = http.createServer(app.callback)
+var server = require('http').Server(app);
 socketManager.initialize(server)
 server.listen(HTTP_PORT, () => {
   console.log("Server up and running on port 6456")
