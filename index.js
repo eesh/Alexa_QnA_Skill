@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 app.post('/attributes/user', controllers.addUserAttribute)
 app.post('/attributes/alexa', controllers.addAlexaAttribute)
 
-app.post('/messages/user', controller.addUserMessage);
+app.post('/messages/user', controllers.addUserMessage);
 
 app.get('/attributes/user', controllers.getUserAttribute)
 app.get('/attributes/alexa', controllers.getAlexaAttribute)
