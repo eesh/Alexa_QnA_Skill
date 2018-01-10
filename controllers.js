@@ -170,7 +170,7 @@ const controllers = {
           return
         }
 
-        res.json({authToken : doc.authToken})
+        res.json({authToken : doc.authToken, access_code: doc.access_code})
         return
       })
     }
@@ -185,7 +185,7 @@ const controllers = {
 
       if(doc.authToken != null) {
         console.log('authToken', doc.authToken)
-        res.json({authToken : doc.authToken})
+        res.json({authToken : doc.authToken, access_code: doc.access_code })
         return
       }
 
