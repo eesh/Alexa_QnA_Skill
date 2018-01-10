@@ -262,6 +262,40 @@ const controllers = {
       }
     })
   },
+
+  runScratchBlock: function (req, res) {
+
+    const authtoken = req.body.authtoken
+    const blockset = req.body.blockSet
+
+    function onUserFound(user) {
+      if(user.clientID == null) {
+        res.json({success: false, message: 'Scratch not connected'});
+        return;
+      }
+      var socketManager = require('./socketManager').instance();
+      var result = socketManager.runBlockSet(user.clientID, blockset);
+      if(result == null) {
+        res.json({success: false, message: 'Invalid blockset'});
+        return;
+      }
+      if(result == false) {
+        res.json({success: false, message: 'Scratch not connected'});
+        return;
+      }
+      res.json({success: true})
+    }
+
+    User.findOne({ 'authToken' : authtoken }, (err, doc) => {
+
+      if(err != null || doc == null) {
+        console.log({value: null, error: 'No such user'})
+        res.json({value: null, error: 'No such user'})
+        return
+      }
+      onUserFound(doc);
+    })
+  }
 }
 
 function generateUUID () { // Public Domain/MIT

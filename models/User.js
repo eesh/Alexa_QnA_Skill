@@ -11,7 +11,11 @@ const UserSchema = mongoose.Schema({
     type: Number,
     unique: true
   },
-  "message": String
+  "message": String,
+  "clientID": {
+    type: String,
+    unique: true
+  }
 })
 
 module.exports = mongoose.model('User', UserSchema)
