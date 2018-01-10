@@ -16,6 +16,7 @@ app.post('/attributes/user', controllers.addUserAttribute)
 app.post('/attributes/alexa', controllers.addAlexaAttribute)
 
 app.post('/messages/user', controllers.addUserMessage);
+app.get('/messages/user', controllers.getUserMessage);
 
 app.get('/attributes/user', controllers.getUserAttribute)
 app.get('/attributes/alexa', controllers.getAlexaAttribute)
