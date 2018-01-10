@@ -81,7 +81,7 @@ const controllers = {
 
   addUserAttribute : function (req, res) {
 
-    const authToken = req.body.authToken
+    const authToken = req.headers.authToken
     const attribute = req.body.attribute
     const value = req.body.value
 
@@ -131,7 +131,7 @@ const controllers = {
 
   getUserAttribute : function (req, res) {
 
-    const authToken = req.query.authToken
+    const authToken = req.headers.authToken
     const attribute = req.query.attribute
 
     function updateAttribute(userId) {
