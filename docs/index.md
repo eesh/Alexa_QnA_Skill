@@ -1,3 +1,7 @@
+---
+layout: home
+---
+
 # Alexa Q&A skill
 
 ## Description:
@@ -15,3 +19,8 @@ alexa skill to run Scratch programming blocks with your voice.
 * Register for an account from Scratch
 * Login to your account from Scratch to connect it with the skill
 * Control Scratch blocks from the skill with your voice.
+
+## Setup instructions
+
+* First setup Scratch locally using [this guide](https://github.com/LLK/scratch-gui/wiki/Getting-Started).
+* Replace scratch-vm and scratch-gui with [this](https://github.com/stefania11/scratch-vm) and [this](https://github.com/stefania11/scratch-gui) respectively.
