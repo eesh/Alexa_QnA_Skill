@@ -162,8 +162,8 @@ const controllers = {
 
     function setAuthToken(userId) {
       const authToken = generateUUID();
-
-      User.findOneAndUpdate({_id : userId} , { $set: { 'authToken' : authToken } }, { new : true }, (err, doc) => {
+      const access_code = generateUAC(10000,99999);
+      User.findOneAndUpdate({_id : userId} , { $set: { 'authToken' : authToken, 'access_code': access_code } }, { new : true }, (err, doc) => {
         console.log(err, doc)
         if(err != null || doc == null) {
           res.json({value: null, error: 'Try again'})
@@ -230,7 +230,27 @@ const controllers = {
       const user = new User({ 'username': username, 'passphrase' : passphrase })
       user.save(onSave)
     })
-  }
+  },
+
+  alexaLogin : function (req, res) {
+
+    const access_code = req.body.access_code
+
+    User.findOne({ 'access_code' : access_code }, (err, doc) => {
+
+      if(err != null || doc == null) {
+        console.log({value: null, error: 'No such user'})
+        res.json({value: null, error: 'No such user'})
+        return
+      }
+
+      if(doc.authToken != null) {
+        console.log('authToken', doc.authToken)
+        res.json({authToken : doc.authToken})
+        return
+      }
+    })
+  },
 }
 
 function generateUUID () { // Public Domain/MIT
@@ -243,6 +263,10 @@ function generateUUID () { // Public Domain/MIT
       d = Math.floor(d / 16);
       return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
   })
+};
+
+function generateUAC (min, max) { // Public Domain/MIT
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 module.exports = controllers

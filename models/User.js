@@ -6,6 +6,10 @@ const UserSchema = mongoose.Schema({
   "authToken": {
     type: String,
     unique: true
+  },
+  "access_code": {
+    type: Number,
+    unique: true
   }
 })
 

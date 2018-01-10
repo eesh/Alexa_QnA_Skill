@@ -20,6 +20,7 @@ app.get('/attributes/alexa', controllers.getAlexaAttribute)
 
 app.post('/user/login', controllers.login)
 app.post('/user/register', controllers.register)
+app.post('/alexa/login', controllers.alexaLogin)
 
 app.listen(6456, () => {
   console.log("Server up and running on port 6456")
