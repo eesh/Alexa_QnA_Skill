@@ -132,6 +132,7 @@ const controllers = {
   getUserAttribute : function (req, res) {
 
     const authToken = req.headers.authToken
+    console.log(`authToken: ${authToken}`);
     const attribute = req.query.attribute
 
     function updateAttribute(userId) {
@@ -184,7 +185,6 @@ const controllers = {
       }
 
       if(doc.authToken != null) {
-        console.log('authToken', doc.authToken)
         res.json({authToken : doc.authToken, access_code: doc.access_code })
         return
       }
