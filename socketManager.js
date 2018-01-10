@@ -11,7 +11,6 @@ function init(server) {
     console.log(`${clientID} connected`);
 
     client.on('message', function(message){
-      var message = data;
       if(message != null && message.command == "register") {
         saveClientID(client.id, message.access_code);
       }
