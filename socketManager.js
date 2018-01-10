@@ -71,5 +71,6 @@ module.exports = {
   instance: function() {
     return io;
   },
-  initialize: init
+  initialize: init,
+  runBlockSet: runBlockSet
 }
