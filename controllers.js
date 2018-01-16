@@ -8,7 +8,8 @@ const controllers = {
   getAlexaAttribute : function(req, res) {
 
     const attribute = req.query.attribute
-
+    const pronoun = req.query.pronoun
+    console.log(pronoun, attribute);
     AlexaAttribute.findOne({ 'attribute' : attribute }, (err, doc) => {
       if(err) {
         res.json({ value: null })

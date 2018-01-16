@@ -24,3 +24,4 @@ alexa skill to run Scratch programming blocks with your voice.
 
 * First setup Scratch locally using [this guide](https://github.com/LLK/scratch-gui/wiki/Getting-Started).
 * Replace scratch-vm and scratch-gui with [this](https://github.com/stefania11/scratch-vm) and [this](https://github.com/stefania11/scratch-gui) respectively.
+* 
