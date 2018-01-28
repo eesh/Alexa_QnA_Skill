@@ -6,6 +6,7 @@ const cors = require('cors')
 const controllers = require('./controllers')
 const socketManager = require('./socketManager')
 const config = require('./config')
+const fs = require('fs')
 
 const HTTP_PORT = 6456
 
