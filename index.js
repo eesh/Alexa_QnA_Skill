@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const controllers = require('./controllers')
 const socketManager = require('./socketManager')
+const config = require('./config')
 
 const HTTP_PORT = 6456
 
@@ -30,7 +31,13 @@ app.post('/scratch/run', controllers.runScratchBlock)
 
 app.post('/alexa/login', controllers.alexaLogin)
 
-var server = require('http').Server(app);
+var options = {
+  ca: fs.readFileSync(config.sslCA),
+  key: fs.readFileSync(config.sslKeyPath),
+  cert: fs.readFileSync(config.sslCertPath)
+}
+
+var server = require('https').createServer(options, app);
 socketManager.initialize(server)
 server.listen(HTTP_PORT, () => {
   console.log("Server up and running on port 6456")
