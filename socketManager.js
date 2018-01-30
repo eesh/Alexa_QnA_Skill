@@ -36,7 +36,7 @@ function runBlockSet(clientID, blockSet) {
   }
 
   clients[clientID].send({
-    command: 'runBlockSet',
+    command: 'runcommand',
     arguments: {
       set: blockSet
     }
